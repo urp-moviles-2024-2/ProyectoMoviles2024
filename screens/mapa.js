@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MapView from 'react-native-maps'
 
 
 const mapa = () => {
@@ -19,8 +18,5 @@ const mapa = () => {
     alignItems: 'center',
     justifyContent: 'center'
   },
-  map: {
-    width: 400,
-    height: 400
-  }
+  
  })
