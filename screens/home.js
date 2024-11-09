@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CoffeeOnboardingScreen = () => {
+const CoffeeOnboardingScreen = ({navigation }) => {
   return (
     <ImageBackground
       source={{ uri: 'https://images.unsplash.com/photo-1498804103079-a6351b050096' }}
@@ -12,7 +12,10 @@ const CoffeeOnboardingScreen = () => {
         <Text style={styles.subtitle}>
           Bienvenido a nuestro acogedor rincón del café, donde cada taza es un deleite para ti.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Categorias')}
+        >
           <Text style={styles.buttonText}>Empezar</Text>
         </TouchableOpacity>
       </View>
