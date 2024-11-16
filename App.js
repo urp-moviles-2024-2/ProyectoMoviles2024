@@ -1,21 +1,35 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import SideMenu from './components/sidemenu';
+import React from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import home from "./screens/home";
+import login from "./screens/login";
+import CategoriesScreen from "./screens/categorias";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SideMenu/>
+      <Stack.Navigator initialRouteName="login">
+        <Stack.Screen
+          name="login"
+          component={login}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Stack.Screen
+          name="home"
+          component={home}
+          options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+        />
+        <Stack.Screen
+          name="CategoriesScreen"
+          component={CategoriesScreen}
+          options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+        />
+      </Stack.Navigator>
+
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
