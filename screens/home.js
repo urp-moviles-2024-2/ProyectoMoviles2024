@@ -21,8 +21,8 @@ const home = ({ route, navigation }) => {
       });
   };
 
-  const categoriesHandler = () => {
-    navigation.navigate("CategoriesScreen");
+  const MainHandler = () => {
+    navigation.navigate("CoffeeOnboardingScreen");
   };
 
   const Drawer = createDrawerNavigator();
@@ -33,7 +33,7 @@ const home = ({ route, navigation }) => {
 
       <Button title="Logout" onPress={logoutHandler} />
 
-      <Button title="Categories" onPress={categoriesHandler} />
+      <Button title="Main" onPress={MainHandler} />
 
     </View>
   );
