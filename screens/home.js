@@ -1,3 +1,4 @@
+
 import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -47,3 +48,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+
