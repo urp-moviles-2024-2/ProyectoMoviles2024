@@ -8,9 +8,9 @@ export default function Search() {
       <Text style={styles.locationText}>Locación</Text>
       <Text style={styles.location}>Lima, PERU</Text>
       <View style={styles.searchContainer}>
-        <Ionicons name="search-outline" size={20} color="#888" />
+        <Ionicons testID="search-icon" name="search-outline" size={20} color="#888" />
         <Text style={styles.searchText}>Buscar</Text>
-        <Ionicons name="options-outline" size={20} color="#ff7f50" />
+        <Ionicons testID="options-icon" name="options-outline" size={20} color="#ff7f50" />
       </View>
     </View>
   );

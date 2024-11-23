@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default function Footer() {
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => console.log('Home pressed')}>
+      <TouchableOpacity onPress={() => console.log('Home pressed')} >
         <Ionicons name="home-outline" size={30} color="#ff7f50" testID="icon-home" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('Search pressed')}>
