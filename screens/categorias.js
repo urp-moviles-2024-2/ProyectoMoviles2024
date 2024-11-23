@@ -1,39 +1,40 @@
-import React from 'react';
-
-import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Animated, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenWithFooter from '../components/ScreenWithFooter';
 import Search from '../components/Buscador';
 
 const products = [
-  { id: '1', name: 'Café Espresso', price: 'S/. 3.00', imageUrl: 'assets/caffemocha.jpg' },
-  { id: '2', name: 'Café Latte', price: 'S/. 4.50', imageUrl: 'assets/caffelate.jpg' },
-  { id: '3', name: 'Café Americano', price: 'S/. 3.50', imageUrl: 'assets/caffeamericano.jpeg' },
-  { id: '4', name: 'Cappuccino', price: 'S/. 4.00', imageUrl: 'assets/capuchino.jpg' },
-  { id: '5', name: 'Macchiato', price: 'S/. 4.20', imageUrl: 'assets/Macchiato.jpg' },
-  { id: '6', name: 'Ristretto', price: 'S/. 3.80', imageUrl: 'assets/ristretto.jpg' },
+  { id: '1', name: 'Café Espresso', price: 3.0, imageUrl: 'assets/caffemocha.jpg'},
+  { id: '2', name: 'Café Latte', price: 4.5, imageUrl: 'assets/caffelate.jpg' },
+  { id: '3', name: 'Café Americano', price: 3.5, imageUrl: 'assets/caffeamericano.jpeg' },
+  { id: '4', name: 'Cappuccino', price: 4.0, imageUrl: 'assets/capuchino.jpg' },
 ];
 
 const CategoriesScreen = () => {
-  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const [carrito, setCarrito] = useState([]);
 
-  React.useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 2000,
-      easing: Easing.ease,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
-
+  const agregarAlCarrito = (producto) => {
+    setCarrito((prev) => {
+      const existe = prev.find((item) => item.id === producto.id);
+      if (existe) {
+        return prev.map((item) =>
+          item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
+        );
+      } else {
+        return [...prev, { ...producto, cantidad: 1 }];
+      }
+    });
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.productContainer}>
       <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
       <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.productPrice}>{item.price}</Text>
-      <TouchableOpacity style={styles.addButton}>
-        <Text style={styles.addButtonText}>+</Text> 
+      <Text style={styles.productPrice}>S/.{item.price.toFixed(2)}</Text>
+      <TouchableOpacity style={styles.addButton} onPress={() => agregarAlCarrito(item)}>
+        <Ionicons name="cart-outline" size={20} color="#fff" />
+        <Text style={styles.addButtonText}>Agregar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -42,13 +43,7 @@ const CategoriesScreen = () => {
     <ScreenWithFooter>
       <Search />
       <ScrollView contentContainerStyle={styles.scrollView}>
-        
-        <Animated.View style={{ ...styles.animatedView, opacity: fadeAnim }}>
-          <View style={styles.banner}>
-            <Text style={styles.promoLabel}>Promo</Text>
-            <Text style={styles.bannerText}>Encuentra los mejores cafés aquí</Text>
-          </View>
-          
+        <Animated.View style={{ ...styles.animatedView }}>
           <FlatList
             data={products}
             renderItem={renderItem}
@@ -59,7 +54,6 @@ const CategoriesScreen = () => {
         </Animated.View>
       </ScrollView>
     </ScreenWithFooter>
-
   );
 };
 

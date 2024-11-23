@@ -37,7 +37,7 @@ export default function App() {
           component={CoffeeOnboardingScreen}
           options={{ headerLeft: () => null, headerTitleAlign: "center" }}
         />
-        <Stack.Screen
+       <Stack.Screen
           name="FavoritosScreen"
           component={FavoritosScreen}
           options={{ headerLeft: () => null, headerTitleAlign: "center" }}
