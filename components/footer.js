@@ -11,7 +11,7 @@ export default function Footer() {
       <TouchableOpacity onPress={() => console.log('Search pressed')}>
         <Ionicons name="search-outline" size={30} color="#333" testID="icon-search" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('Cart pressed')}>
+      <TouchableOpacity onPress={() => navigation.navigate('FavoritosScreen')}>
         <Ionicons name="cart-outline" size={30} color="#333" testID="icon-cart" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('Profile pressed')}>

@@ -6,14 +6,13 @@ import ScreenWithFooter from '../components/ScreenWithFooter';
 import Search from '../components/Buscador';
 
 const products = [
-  { id: '1', name: 'Café Espresso', price: '$3.00', imageUrl: 'assets/caffemocha.jpg' },
-  { id: '2', name: 'Café Latte', price: '$4.50', imageUrl: 'assets/caffelate.jpg' },
-  { id: '3', name: 'Café Americano', price: '$3.50', imageUrl: 'assets/caffeamericano.jpeg' },
-  { id: '4', name: 'Cappuccino', price: '$4.00', imageUrl: 'assets/capuchino.jpg' },
-  { id: '5', name: 'Macchiato', price: '$4.20', imageUrl: 'assets/Macchiato.jpg' },
-  { id: '6', name: 'Ristretto', price: '$3.80', imageUrl: 'assets/ristretto.jpg' },
+  { id: '1', name: 'Café Espresso', price: 'S/. 3.00', imageUrl: 'assets/caffemocha.jpg' },
+  { id: '2', name: 'Café Latte', price: 'S/. 4.50', imageUrl: 'assets/caffelate.jpg' },
+  { id: '3', name: 'Café Americano', price: 'S/. 3.50', imageUrl: 'assets/caffeamericano.jpeg' },
+  { id: '4', name: 'Cappuccino', price: 'S/. 4.00', imageUrl: 'assets/capuchino.jpg' },
+  { id: '5', name: 'Macchiato', price: 'S/. 4.20', imageUrl: 'assets/Macchiato.jpg' },
+  { id: '6', name: 'Ristretto', price: 'S/. 3.80', imageUrl: 'assets/ristretto.jpg' },
 ];
-
 
 const CategoriesScreen = () => {
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
@@ -49,6 +48,7 @@ const CategoriesScreen = () => {
             <Text style={styles.promoLabel}>Promo</Text>
             <Text style={styles.bannerText}>Encuentra los mejores cafés aquí</Text>
           </View>
+          
           <FlatList
             data={products}
             renderItem={renderItem}

@@ -7,11 +7,14 @@ import home from "./screens/home";
 import login from "./screens/login";
 import CategoriesScreen from "./screens/categorias";
 import CoffeeOnboardingScreen from "./screens/MainCoffee";
+import FavoritosScreen from "./screens/favoritos";
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    
     <NavigationContainer>
       <Stack.Navigator initialRouteName="login">
         <Stack.Screen
@@ -32,6 +35,11 @@ export default function App() {
         <Stack.Screen
           name="CoffeeOnboardingScreen"
           component={CoffeeOnboardingScreen}
+          options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+        />
+       <Stack.Screen
+          name="FavoritosScreen"
+          component={FavoritosScreen}
           options={{ headerLeft: () => null, headerTitleAlign: "center" }}
         />
       </Stack.Navigator>
