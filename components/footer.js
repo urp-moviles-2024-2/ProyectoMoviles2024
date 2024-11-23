@@ -14,10 +14,10 @@ export default function Footer() {
       <TouchableOpacity onPress={() => console.log('Search pressed')}>
         <Ionicons name="search-outline" size={30} color="#333" testID="icon-search" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('FavoritosScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CarritoScreen')}>
         <Ionicons name="cart-outline" size={30} color="#333" testID="icon-cart" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('Profile pressed')}>
+      <TouchableOpacity onPress={() => navigation.navigate('PersonScreen')}>
         <Ionicons name="person-outline" size={30} color="#333" testID="icon-profile" />
       </TouchableOpacity>
     </View>

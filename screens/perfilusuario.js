@@ -4,9 +4,10 @@ import PersonDetails from "../components/detallepersona";
 
 const PersonScreen = () => {
   const person = {
-    fullName: "Juan Pérez García",
-    email: "juan.perez@example.com",
-    address: "Av. Siempre Viva 123, Lima, Perú",
+    fullName: "Jorge Angeles",
+    email: "jordan@gmail.com",
+    address: "Av. San Juan, Lima, Perú",
+    profilePicture:{ uri: 'assets/caffemocha.jpg' },
   };
 
   return (

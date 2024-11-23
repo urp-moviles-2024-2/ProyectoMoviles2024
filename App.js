@@ -7,7 +7,8 @@ import home from "./screens/home";
 import login from "./screens/login";
 import CategoriesScreen from "./screens/categorias";
 import CoffeeOnboardingScreen from "./screens/MainCoffee";
-import FavoritosScreen from "./screens/favoritos";
+import CarritoScreen from "./screens/Carrito";
+import PersonScreen from "./screens/perfilusuario";
 
 
 const Stack = createNativeStackNavigator();
@@ -38,8 +39,13 @@ export default function App() {
           options={{ headerLeft: () => null, headerTitleAlign: "center" }}
         />
        <Stack.Screen
-          name="FavoritosScreen"
-          component={FavoritosScreen}
+          name="CarritoScreen"
+          component={CarritoScreen}
+          options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+        />
+        <Stack.Screen
+          name="PersonScreen"
+          component={PersonScreen}
           options={{ headerLeft: () => null, headerTitleAlign: "center" }}
         />
       </Stack.Navigator>
