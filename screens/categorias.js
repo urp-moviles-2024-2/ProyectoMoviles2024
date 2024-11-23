@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenWithFooter from '../components/ScreenWithFooter';
@@ -13,6 +14,7 @@ const products = [
   { id: '6', name: 'Ristretto', price: '$3.80', imageUrl: 'assets/ristretto.jpg' },
 ];
 
+
 const CategoriesScreen = () => {
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
 
@@ -24,6 +26,7 @@ const CategoriesScreen = () => {
       useNativeDriver: true,
     }).start();
   }, [fadeAnim]);
+
 
   const renderItem = ({ item }) => (
     <View style={styles.productContainer}>
@@ -56,6 +59,7 @@ const CategoriesScreen = () => {
         </Animated.View>
       </ScrollView>
     </ScreenWithFooter>
+
   );
 };
 
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f7f9fc',
+
   },
   header: {
     paddingTop: 50,
@@ -167,5 +172,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
+
   },
 });
