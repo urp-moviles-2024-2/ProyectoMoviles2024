@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Footer() {
+  const navigation = useNavigation(); // Obtener el objeto de navegación
+
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => console.log('Home pressed')} >
+      <TouchableOpacity onPress={() => console.log('Home pressed')}>
         <Ionicons name="home-outline" size={30} color="#ff7f50" testID="icon-home" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('Search pressed')}>
         <Ionicons name="search-outline" size={30} color="#333" testID="icon-search" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('FavoritosScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('')}>
         <Ionicons name="cart-outline" size={30} color="#333" testID="icon-cart" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log('Profile pressed')}>

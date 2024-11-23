@@ -6,7 +6,8 @@ export default function ScreenWithFooter({ children }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>{children}</View>
-      <Footer />
+      <Footer navigation={navigation} />
+
     </View>
   );
 }
