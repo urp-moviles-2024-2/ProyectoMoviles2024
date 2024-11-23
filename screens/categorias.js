@@ -1,6 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity, FlatList } from 'react-native';
+
+import { StyleSheet, Text, View, Animated, Easing, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import ScreenWithFooter from '../components/ScreenWithFooter';
+import Search from '../components/Buscador';
+
+const products = [
+  { id: '1', name: 'Café Espresso', price: '$3.00', imageUrl: 'assets/caffemocha.jpg' },
+  { id: '2', name: 'Café Latte', price: '$4.50', imageUrl: 'assets/caffelate.jpg' },
+  { id: '3', name: 'Café Americano', price: '$3.50', imageUrl: 'assets/caffeamericano.jpeg' },
+  { id: '4', name: 'Cappuccino', price: '$4.00', imageUrl: 'assets/capuchino.jpg' },
+  { id: '5', name: 'Macchiato', price: '$4.20', imageUrl: 'assets/Macchiato.jpg' },
+  { id: '6', name: 'Ristretto', price: '$3.80', imageUrl: 'assets/ristretto.jpg' },
+];
+
 
 const CategoriesScreen = () => {
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
@@ -14,51 +27,39 @@ const CategoriesScreen = () => {
     }).start();
   }, [fadeAnim]);
 
-  const categories = [
-    'Todos', 'Macchiato', 'Latte', 'Americano', 'Espresso', 
-    'Cappuccino', 'Mocha', 'Ristretto', 'Cortado', 'Affogato', 
-    'Irish Coffee', 'Doppio', 'Flat White', 'Cold Brew', 'Iced Coffee'
-  ];
+
+  const renderItem = ({ item }) => (
+    <View style={styles.productContainer}>
+      <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
+      <Text style={styles.productName}>{item.name}</Text>
+      <Text style={styles.productPrice}>{item.price}</Text>
+      <TouchableOpacity style={styles.addButton}>
+        <Text style={styles.addButtonText}>+</Text> 
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.locationText}>Locacion</Text>
-        <Text style={styles.location}>Lima, PERU</Text>
-        <View style={styles.searchContainer}>
-          <Ionicons name="search-outline" size={20} color="#888" />
-          <Text style={styles.searchText}>Buscar</Text>
-          <Ionicons name="options-outline" size={20} color="#ff7f50" />
-        </View>
-      </View>
+    <ScreenWithFooter>
+      <Search />
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        
+        <Animated.View style={{ ...styles.animatedView, opacity: fadeAnim }}>
+          <View style={styles.banner}>
+            <Text style={styles.promoLabel}>Promo</Text>
+            <Text style={styles.bannerText}>Encuentra los mejores cafés aquí</Text>
+          </View>
+          <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            contentContainerStyle={styles.productList}
+          />
+        </Animated.View>
+      </ScrollView>
+    </ScreenWithFooter>
 
-      <Animated.View style={{ ...styles.animatedView, opacity: fadeAnim }}>
-        <View style={styles.banner}>
-          <Text style={styles.promoLabel}>Promo</Text>
-          <Text style={styles.bannerText}>Encuentra los mejores cafés aqui</Text>
-        </View>
-
-        <FlatList
-          data={categories}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoriesContainer}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.categoryButton}>
-              <Text style={styles.categoryText}>{item}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item}
-        />
-      </Animated.View>
-
-      <View style={styles.footer}>
-        <Ionicons name="home-outline" size={30} color="#ff7f50" />
-        <Ionicons name="search-outline" size={30} color="#333" />
-        <Ionicons name="cart-outline" size={30} color="#333" />
-        <Ionicons name="person-outline" size={30} color="#333" />
-      </View>
-    </View>
   );
 };
 
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f7f9fc',
+
   },
   header: {
     paddingTop: 50,
@@ -126,29 +128,50 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  categoriesContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
+  scrollView: {
+    flexGrow: 1,
+    paddingBottom: 100,
+  },
+  productContainer: {
+    flex: 1,
+    margin: 8,
+    padding: 16,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  categoryButton: {
-    backgroundColor: '#ffdab9',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    marginHorizontal: 5,
+  productImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 8,
+    marginBottom: 8,
   },
-  categoryText: {
-    color: '#333',
+  productName: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 20,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderColor: '#e0e0e0',
+  productPrice: {
+    fontSize: 14,
+    color: '#888',
+    marginBottom: 8,
+  },
+  addButton: {
+    marginTop: 8,
+    backgroundColor: '#2196F3',
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  addButtonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+
   },
 });
