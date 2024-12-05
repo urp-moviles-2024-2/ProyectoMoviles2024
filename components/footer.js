@@ -8,10 +8,10 @@ export default function Footer() {
 
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => console.log('Home pressed')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CoffeeOnboardingScreen')}>
         <Ionicons name="home-outline" size={30} color="#ff7f50" testID="icon-home" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('Search pressed')}>
+      <TouchableOpacity onPress={() => navigation.navigate('CategoriesScreen')}>
         <Ionicons name="search-outline" size={30} color="#333" testID="icon-search" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('CarritoScreen')}>
