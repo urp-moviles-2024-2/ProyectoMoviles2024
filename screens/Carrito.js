@@ -48,8 +48,10 @@ const CarritoScreen = () => {
   const total = carrito.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
 
   return (
+    <ScreenWithFooter>
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F5F5' }}>
-      <View style={{ padding: 16 }}>
+      
+    <View style={{ padding: 16 }}>
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Carrito de Compras</Text>
         <View>
           {carrito.map((producto) => (
@@ -104,6 +106,7 @@ const CarritoScreen = () => {
       </View>
       
     </ScrollView>
+    </ScreenWithFooter>
   );
 };
 

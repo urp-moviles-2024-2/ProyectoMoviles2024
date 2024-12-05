@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import PersonDetails from "../components/detallepersona";
+import ScreenWithFooter from '../components/ScreenWithFooter';
 
 const PersonScreen = () => {
   const person = {
@@ -11,9 +12,11 @@ const PersonScreen = () => {
   };
 
   return (
+    <ScreenWithFooter>
     <View style={styles.screen}>
       <PersonDetails person={person} />
     </View>
+    </ScreenWithFooter>
   );
 };
 
