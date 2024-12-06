@@ -8,7 +8,6 @@ const PersonScreen = () => {
     fullName: "Jorge Angeles",
     email: "jordan@gmail.com",
     address: "Av. San Juan, Lima, Perú",
-    profilePicture:{ uri: 'assets/caffemocha.jpg' },
   };
 
   return (
