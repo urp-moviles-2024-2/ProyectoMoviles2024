@@ -92,3 +92,4 @@ describe('Footer Component', () => {
     expect(mockNavigate).toHaveBeenCalledWith('PersonScreen');
   });
 });
+

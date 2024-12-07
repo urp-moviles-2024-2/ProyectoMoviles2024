@@ -36,6 +36,11 @@ const CategoriesScreen = () => {
       {/* Barra de búsqueda */}
       <Search />
 
+      {/* Banner debajo del buscador */}
+      <View style={styles.banner}>
+        <Text style={styles.bannerText}>¡Explora nuestros deliciosos cafés!</Text>
+      </View>
+
       <ScrollView contentContainerStyle={styles.scrollView}>
         <FlatList
           data={products}
@@ -50,6 +55,25 @@ const CategoriesScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  // Fondo de color negro café para todo el contenido
+  container: {
+    flex: 1,
+    backgroundColor: "#2c1b18", // Color de fondo más oscuro (negro café)
+    padding: 10,
+  },
+  // Estilo del banner debajo del buscador
+  banner: {
+    backgroundColor: "#4e342e", // Un tono más claro para el banner
+    padding: 15,
+    marginVertical: 10,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  bannerText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   productContainer: {
     flex: 1,
     margin: 10,
