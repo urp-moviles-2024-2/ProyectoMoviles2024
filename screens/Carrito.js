@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image, FlatList } from "react-native";
 import { useCarrito } from "../context/CarritoContext"; // Importar el contexto
 import ScreenWithFooter from "../components/ScreenWithFooter"; // Importar el componente Footer
 import { Ionicons } from "@expo/vector-icons"; // Si deseas agregar un ícono al botón
@@ -10,30 +10,43 @@ const CarritoScreen = () => {
   // Calcular el total del carrito
   const total = carrito.reduce((acc, producto) => acc + producto.price * producto.cantidad, 0);
 
+  // Función para renderizar los productos de manera horizontal
+  const renderItem = ({ item }) => (
+    <View style={styles.productContainer}>
+      <ScrollView horizontal={true} contentContainerStyle={styles.productDetails}>
+        {/* Imagen del producto */}
+        <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
+        <View style={styles.productInfo}>
+          <Text style={styles.productName}>{item.name}</Text>
+          <Text style={styles.productPrice}>S/.{item.price.toFixed(2)}</Text>
+          <Text style={styles.productQuantity}>Cantidad: {item.cantidad}</Text>
+
+          {/* Eliminar producto */}
+          <TouchableOpacity
+            style={styles.removeButton}
+            onPress={() => eliminarProducto(item.id)} // Eliminar producto
+          >
+            <Text style={styles.removeButtonText}>Eliminar</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
+  );
+
   return (
     <ScreenWithFooter>
+      {/* Cabecera */}
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Carrito de compras</Text>
+      </View>
+
       <ScrollView contentContainerStyle={styles.carritoContainer}>
         {carrito.length === 0 ? (
           <Text style={styles.emptyText}>El carrito está vacío.</Text>
         ) : (
           carrito.map((producto) => (
-            <View key={producto.id} style={styles.productContainer}>
-              {/* Imagen del producto */}
-              <Image source={{ uri: producto.imageUrl }} style={styles.productImage} />
-
-              <Text style={styles.productName}>{producto.name}</Text>
-              <Text style={styles.productPrice}>S/.{producto.price.toFixed(2)}</Text>
-
-              {/* Mostrar la cantidad de ese producto */}
-              <Text style={styles.productQuantity}>Cantidad: {producto.cantidad}</Text>
-
-              {/* Eliminar producto */}
-              <TouchableOpacity
-                style={styles.removeButton}
-                onPress={() => eliminarProducto(producto.id)} // Eliminar producto
-              >
-                <Text style={styles.removeButtonText}>Eliminar</Text>
-              </TouchableOpacity>
+            <View key={producto.id}>
+              {renderItem({ item: producto })}
             </View>
           ))
         )}
@@ -56,6 +69,17 @@ const CarritoScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#3E2723", // Color café oscuro
+    paddingVertical: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  headerText: {
+    fontSize: 24,
+    color: "#fff", // Color blanco
+    fontWeight: "bold",
+  },
   carritoContainer: {
     padding: 20,
   },
@@ -64,13 +88,22 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#f5f5f5",
     borderRadius: 10,
-    alignItems: "center",
+    alignItems: "flex-start", // Alinea los productos a la izquierda
+  },
+  productDetails: {
+    flexDirection: "row", // Alinea los elementos horizontalmente
+    alignItems: "center", // Alinea verticalmente el contenido
+    width: "100%", // Ocupa todo el ancho disponible
   },
   productImage: {
-    width: 100, // Ajusta el tamaño según tu preferencia
+    width: 100, // Ajusta el tamaño de la imagen
     height: 100,
     borderRadius: 8,
-    marginBottom: 10,
+    marginRight: 10, // Espacio entre la imagen y la información
+  },
+  productInfo: {
+    flexDirection: "column", // Alinea el texto en columna, debajo de la imagen
+    justifyContent: "center",
   },
   productName: {
     fontSize: 18,
