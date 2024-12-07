@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const Imgmapa = () => {
+const Imgmapa = ({person}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Detalles de la Cuenta</Text>

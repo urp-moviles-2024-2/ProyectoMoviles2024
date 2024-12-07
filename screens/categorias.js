@@ -36,12 +36,13 @@ const CategoriesScreen = () => {
       {/* Barra de búsqueda */}
       <Search />
 
-      {/* Banner debajo del buscador */}
-      <View style={styles.banner}>
-        <Text style={styles.bannerText}>¡Explora nuestros deliciosos cafés!</Text>
-      </View>
+      
 
       <ScrollView contentContainerStyle={styles.scrollView}>
+        {/* Banner debajo del buscador */}
+        <View style={styles.banner}>
+          <Text style={styles.bannerText}>¡Explora nuestros deliciosos cafés!</Text>
+        </View>
         <FlatList
           data={products}
           renderItem={renderItem}
