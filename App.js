@@ -9,6 +9,9 @@ import CategoriesScreen from "./screens/categorias";
 import CoffeeOnboardingScreen from "./screens/MainCoffee";
 import CarritoScreen from "./screens/Carrito";
 import PersonScreen from "./screens/perfilusuario";
+import MapaScreen from "./screens/mapa";
+import VerificacionScreen from "./screens/verificacion";
+import VentaexitosaScreen from "./screens/VentaExitosa";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +48,21 @@ export default function App() {
           <Stack.Screen
             name="PersonScreen"
             component={PersonScreen}
+            options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="MapsScreen"
+            component={MapaScreen}
+            options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="VerificacionScreen"
+            component={VerificacionScreen}
+            options={{ headerLeft: () => null, headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="VentaexitosaScreen"
+            component={VentaexitosaScreen}
             options={{ headerLeft: () => null, headerTitleAlign: "center" }}
           />
         </Stack.Navigator>
