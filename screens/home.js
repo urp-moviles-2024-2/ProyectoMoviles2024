@@ -1,14 +1,11 @@
-
-import { Button, StyleSheet, Text, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-//import { useNavigation } from "@react-navigation/native";
 
-const home = ({ route, navigation }) => {
+const Home = ({ route, navigation }) => {
   const email = route.params.email;
   const auth = getAuth();
-  //const navigation = useNavigation();
 
   const logoutHandler = () => {
     signOut(auth)
@@ -29,24 +26,65 @@ const home = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Welcome {email}</Text>
+      <Text style={styles.welcomeText}>Bienvenido {email}!</Text>
+      <Text style={styles.subtitle}>Disfruta de nuestra experiencia!</Text>
 
-      <Button title="Logout" onPress={logoutHandler} />
+      <TouchableOpacity style={styles.button} onPress={MainHandler}>
+        <Text style={styles.buttonText}>Explorar</Text>
+      </TouchableOpacity>
 
-      <Button title="Main" onPress={MainHandler} />
-
+      <TouchableOpacity style={[styles.button, styles.logoutButton]} onPress={logoutHandler}>
+        <Text style={[styles.buttonText, styles.logoutText]}>Cerrar Sesión</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default home;
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fffaf0",
+    padding: 20,
+  },
+  welcomeText: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#6b4e31",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#8a7f72",
+    textAlign: "center",
+    marginBottom: 30,
+  },
+  button: {
+    backgroundColor: "#804000",
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 8,
+    marginVertical: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 5,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  logoutButton: {
+    backgroundColor: "#d9534f",
+  },
+  logoutText: {
+    color: "#fff",
   },
 });
-
-

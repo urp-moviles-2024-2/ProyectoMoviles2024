@@ -78,7 +78,7 @@ const login = () => {
               style={styles.profilePicture}
             />
             <View>
-              <Text style={styles.text}>E-mail</Text>
+              <Text style={styles.text}>Correo</Text>
               <TextInput
                 onChangeText={(text) => setEmail(text)}
                 style={styles.input}
@@ -86,7 +86,7 @@ const login = () => {
               />
             </View>
             <View>
-              <Text style={styles.text}>Password</Text>
+              <Text style={styles.text}>Contraseña</Text>
               <TextInput
                 onChangeText={(text) => setPassword(text)}
                 style={styles.input}
@@ -98,13 +98,13 @@ const login = () => {
               onPress={handleSignIn}
               style={[styles.button, { backgroundColor: "#00CFEB90" }]}
             >
-              <Text style={styles.text}>Login</Text>
+              <Text style={styles.text}>Ingresar</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleCreateAccount}
               style={[styles.button, { backgroundColor: "#6792F090" }]}
             >
-              <Text style={styles.text}>Create Account</Text>
+              <Text style={styles.text}>Crear cuenta</Text>
             </TouchableOpacity>
           </View>
         </BlurView>
