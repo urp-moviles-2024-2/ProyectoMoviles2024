@@ -1,14 +1,29 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { useCarrito } from "../context/CarritoContext"; // Importar el contexto
 import ScreenWithFooter from "../components/ScreenWithFooter"; // Importar el componente Footer
 import { Ionicons } from "@expo/vector-icons"; // Si deseas agregar un ícono al botón
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const CarritoScreen = () => {
+const CarritoScreen = ({navigation}) => {
   const { carrito, setCarrito, eliminarProducto } = useCarrito(); // Obtener carrito, setCarrito y función para eliminar
 
   // Calcular el total del carrito
-  const total = carrito.reduce((acc, producto) => acc + producto.price * producto.cantidad, 0);
+  const total = carrito.reduce(
+    (acc, producto) => acc + producto.price * producto.cantidad,
+    0
+  );
+
+  const MainHandler = () => {
+    navigation.navigate("VerificacionScreen");
+  };
 
   return (
     <ScreenWithFooter>
@@ -19,13 +34,20 @@ const CarritoScreen = () => {
           carrito.map((producto) => (
             <View key={producto.id} style={styles.productContainer}>
               {/* Imagen del producto */}
-              <Image source={{ uri: producto.imageUrl }} style={styles.productImage} />
+              <Image
+                source={{ uri: producto.imageUrl }}
+                style={styles.productImage}
+              />
 
               <Text style={styles.productName}>{producto.name}</Text>
-              <Text style={styles.productPrice}>S/.{producto.price.toFixed(2)}</Text>
+              <Text style={styles.productPrice}>
+                S/.{producto.price.toFixed(2)}
+              </Text>
 
               {/* Mostrar la cantidad de ese producto */}
-              <Text style={styles.productQuantity}>Cantidad: {producto.cantidad}</Text>
+              <Text style={styles.productQuantity}>
+                Cantidad: {producto.cantidad}
+              </Text>
 
               {/* Eliminar producto */}
               <TouchableOpacity
@@ -46,11 +68,17 @@ const CarritoScreen = () => {
         </View>
       )}
 
-      {/* Botón Comprar en la parte inferior derecha */}
+      <TouchableOpacity style={styles.buyButton} onPress={MainHandler}>
+        <Text style={styles.buyButtonText}>Comprar</Text>
+        <Ionicons name="cart" size={24} color="#fff" style={styles.buyButtonIcon} />
+      </TouchableOpacity>
+
+      {/*
       <TouchableOpacity style={styles.buyButton}>
         <Text style={styles.buyButtonText}>Comprar</Text>
         <Ionicons name="cart" size={24} color="#fff" style={styles.buyButtonIcon} />
       </TouchableOpacity>
+      */ }
     </ScreenWithFooter>
   );
 };
